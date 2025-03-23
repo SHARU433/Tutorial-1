@@ -1,0 +1,30 @@
+from collections import deque
+
+def minimum_of_maximum_brightness(latherns, k):
+    n = len(latherns)
+    dq = deque()  
+    maximum_in_windows = []
+    
+    for i in range(n):
+        
+        while dq and dq[0] < i - k + 1:
+            dq.popleft()
+        
+        
+        while dq and latherns[dq[-1]] < latherns[i]:
+            dq.pop()
+        
+        
+        dq.append(i)
+        
+       
+        if i >= k - 1:
+            maximum_in_windows.append(latherns[dq[0]])
+    
+   
+    return min(maximum_in_windows)
+
+latherns = [3, 7, 1, 3, 5, 2, 8, 6, 4]
+k = 3
+result = minimum_of_maximum_brightness(latherns, k)
+print(result)
