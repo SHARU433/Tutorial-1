@@ -1,0 +1,31 @@
+def min_swaps(A, B):
+    
+    if sorted(A) != sorted(B):
+        return -1
+
+    a = list(A)
+    b = list(B)
+    swaps = 0
+
+    for i in range(len(b)):
+
+        index = a.index(b[i], i) 
+
+        if index == i:
+            continue
+
+        for j in range(index, i, -1):
+            a[j], a[j - 1] = a[j - 1], a[j]  
+            swaps += 1
+    return swaps
+A = "abc"
+B = "bac"
+print(min_swaps(A, B))  
+
+A = "abcd"
+B = "badc"
+print(min_swaps(A, B))  
+
+A = "abc"
+B = "def"
+print(min_swaps(A, B))  
