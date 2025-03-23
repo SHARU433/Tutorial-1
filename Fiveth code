@@ -1,0 +1,27 @@
+def power_consumption(data):
+    averages = []
+    for sensor in data:
+        avg = sum(sensor) / len(sensor)  
+        avg_rounded = round(avg)  
+        averages.append(avg_rounded)
+
+  
+    max_avg = max(averages)
+    max_sensor = averages.index(max_avg) + 1  
+
+    
+    if all(avg < 50 for avg in averages):
+        print("Energy consumption is optimal.")
+    else:
+        print(f"Sensor {max_sensor} has the highest average power consumption: {max_avg}W.")
+
+
+data = [
+    [45, 50, 55, 60],  
+    [30, 35, 40, 45],  
+    [20, 25, 30, 35],  
+    [10, 15, 20, 25],  
+    [5, 10, 15, 20]    
+]
+
+power_consumption(data)
